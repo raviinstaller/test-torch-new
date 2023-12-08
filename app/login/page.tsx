@@ -69,7 +69,7 @@ export default function Login() {
                 Login with Google
               </button>
               <p className="text-sm 2xl:text-base text-slate-500">
-                Don&apos;t have an account? Don't worry 🙂
+                Don't have an account? Don't worry 🙂
               </p>
             </div>
           </div>
