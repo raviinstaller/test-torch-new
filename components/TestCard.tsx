@@ -1,7 +1,7 @@
 import React from "react";
 import CardLayout from "./CardLayout";
 import Image from "next/image";
-import Chip from "./Chip";
+import Chip from "./form/Chip";
 import { EllipsisVerticalIcon } from "@heroicons/react/24/solid";
 
 const TestCard = () => {
