@@ -1,23 +1,33 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState } from "react";
-import { signInWithPopup, signOut, onAuthStateChanged, GoogleAuthProvider } from "firebase/auth";
+import { signInWithPopup, signOut, onAuthStateChanged, GoogleAuthProvider, User } from "firebase/auth";
 import { auth } from "@/firebase";
 
 type AuthStatus = "loading" | "error" | "authenticated" | "unauthenticated";
 
-export const AuthContext = createContext<any | null>(null);
+interface AuthContextProps {
+  user: User | null;
+  status: AuthStatus;
+  googleSignIn: () => void;
+  googleSignOut: () => void;
+}
+
+export const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
 export const AuthContextProvider = ({children} : {children: React.ReactNode}) => {
 
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState<User | null>(null);
     const [status, setStatus] = useState<AuthStatus>("loading");
 
     const googleSignIn = () => {
         setStatus("loading");
         const provider = new GoogleAuthProvider();
 
-        signInWithPopup(auth, provider).then(x => setStatus("authenticated"));
+        signInWithPopup(auth, provider).then(x => setStatus("authenticated")).catch(err => {
+            setStatus("error");
+            console.log(err)
+        });
     }
 
     const googleSignOut = () => {
@@ -44,5 +54,9 @@ export const AuthContextProvider = ({children} : {children: React.ReactNode}) =>
 }
 
 export const UserAuth = () => {
-    return useContext(AuthContext)
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error("useAuth must be used within an AuthContextProvider");
+  }
+  return context;
 }   
