@@ -1,7 +1,8 @@
 import { ApexOptions } from "apexcharts";
 import React from "react";
 import CardLayout from "./CardLayout";
-import Chart from "react-apexcharts";
+import dynamic from "next/dynamic";
+const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const SubmissionsChart = () => {
   const options: ApexOptions = {
@@ -67,7 +68,7 @@ const SubmissionsChart = () => {
     <CardLayout className="grow gap-2 flex flex-col">
       <h6 className="text-sm 2xl:text-base text-slate-500">Statistics</h6>
       <div className="grow">
-        <Chart
+        <ApexChart
           options={options}
           series={series}
           type="line"
