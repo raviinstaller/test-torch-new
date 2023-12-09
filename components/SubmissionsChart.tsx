@@ -65,7 +65,7 @@ const SubmissionsChart = () => {
     },
   ];
   return (
-    <CardLayout className="grow gap-2 flex flex-col">
+    <CardLayout className="w-full gap-2 flex flex-col">
       <h6 className="text-sm 2xl:text-base text-slate-500">Statistics</h6>
       <div className="grow">
         <ApexChart

@@ -1,19 +1,19 @@
 "use client";
 
-import CardLayout from "@/components/CardLayout";
 import Stats from "@/components/Stats";
 import SubmissionCard from "@/components/SubmissionCard";
 import SubmissionsChart from "@/components/SubmissionsChart";
 import TestCard from "@/components/TestCard";
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Page() {
   return (
     <>
-      <div className="flex gap-4">
-        <Stats count={30} image="/test.svg" title="Tests" />
-        <Stats count={20} image="/submission.svg" title="Submissions" />
+      <div className="flex gap-4 flex-col lg:flex-row">
+        <div className="flex gap-4 flex-col sm:flex-row">
+          <Stats count={30} image="/test.svg" title="Tests" />
+          <Stats count={20} image="/submission.svg" title="Submissions" />
+        </div>
         <SubmissionsChart />
       </div>
       <div className="flex flex-col gap-3 mt-6">

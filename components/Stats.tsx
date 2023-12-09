@@ -10,7 +10,7 @@ interface statsProps {
 
 const Stats = ({ title, count, image }: statsProps) => {
   return (
-    <CardLayout className="w-full max-w-[230px] flex flex-col items-end gap-10">
+    <CardLayout className="w-full lg:min-w-[230px] flex lg:flex-col items-start lg:items-end gap-10">
       <div className="flex flex-col gap-2 w-full mb-4">
         <h6 className="text-sm 2xl:text-base text-slate-500">{title}</h6>
         <h3 className="text-3xl 2xl:text-4xl font-semibold text-slate-950">
@@ -22,7 +22,7 @@ const Stats = ({ title, count, image }: statsProps) => {
         height={140}
         width={140}
         alt={title}
-        className="aspect-square"
+        className="aspect-square max-w-[100px] lg:max-w-none"
       />
     </CardLayout>
   );

@@ -1,13 +1,18 @@
 "use client";
 
+import Loader from "@/components/Loader";
 import Checkbox from "@/components/form/Checkbox";
 import TextField from "@/components/form/TextField";
+import { UserAuth } from "@/context/AuthContext";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Login() {
+  const { googleSignIn, status, googleSignOut } = UserAuth();
+
   return (
     <>
+      {status === "loading" && <Loader />}
       <div className="flex min-h-screen bg-white">
         <div className="hidden xl:block grow w-1/2 overflow-hidden">
           <Image
@@ -59,7 +64,10 @@ export default function Login() {
                 Login
               </button>
               <span className="text-sm 2xl:text-base text-slate-500">OR</span>
-              <button className="flex justify-center gap-2 text-sm 2xl:text-base px-5 py-3 rounded-md w-full text-slate-500 hover:bg-slate-100 border border-slate-200">
+              <button
+                onClick={googleSignIn}
+                className="flex justify-center gap-2 text-sm 2xl:text-base px-5 py-3 rounded-md w-full text-slate-500 hover:bg-slate-100 border border-slate-200"
+              >
                 <Image
                   src={"/google.svg"}
                   height={24}
@@ -69,7 +77,13 @@ export default function Login() {
                 Login with Google
               </button>
               <p className="text-sm 2xl:text-base text-slate-500">
-                Don't have an account? Don't worry 🙂
+                Don't have an account?{" "}
+                <button
+                  onClick={googleSignIn}
+                  className="text-blue-600 underline hover:no-underline"
+                >
+                  Sign up
+                </button>
               </p>
             </div>
           </div>
