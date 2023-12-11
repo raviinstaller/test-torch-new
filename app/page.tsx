@@ -3,7 +3,7 @@
 export default function Home() {
   return (
     <>
-      <h1>hlo world</h1>
+      <h1>hlo</h1>
     </>
   );
 }

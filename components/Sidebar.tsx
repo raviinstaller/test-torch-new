@@ -8,8 +8,20 @@ import {
 } from "@heroicons/react/24/solid";
 
 import Image from "next/image";
+import { useState } from "react";
+import NewTestForm from "./NewTestForm";
 
 export default function Sidebar() {
+  let [isOpen, setIsOpen] = useState(false);
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
   return (
     <>
       <div className="fixed top-0 border-e border-slate-200 bg-white h-screen p-4 flex flex-col items-center z-10">
@@ -17,7 +29,10 @@ export default function Sidebar() {
           <Image src={"/logoIcon.svg"} height={42} width={42} alt="logo" />
         </div>
         <div className="flex gap-4 flex-col w-full grow">
-          <button className="flex items-center justify-center aspect-square w-full rounded-full bg-blue-50 hover:bg-blue-100 transition-all">
+          <button
+            onClick={openModal}
+            className="flex items-center justify-center aspect-square w-full rounded-full bg-blue-50 hover:bg-blue-100 transition-all"
+          >
             <PlusIcon height={24} width={24} className="text-blue-600" />
           </button>
           <NavItem Icon={HomeIcon} active />
@@ -27,6 +42,7 @@ export default function Sidebar() {
           </div>
         </div>
       </div>
+      <NewTestForm closeModal={closeModal} isOpen={isOpen} />
     </>
   );
 }

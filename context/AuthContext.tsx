@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, use, useContext, useEffect, useState } from "react";
 import {
   signInWithPopup,
   signOut,
@@ -9,7 +9,7 @@ import {
   User,
 } from "firebase/auth";
 import { auth } from "@/firebase";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 type AuthStatus = "loading" | "error" | "authenticated" | "unauthenticated";
 
@@ -30,6 +30,9 @@ export const AuthContextProvider = ({
   children: React.ReactNode;
 }) => {
   const router = useRouter();
+  const pathname = usePathname();
+
+  const PUBLIC_ROUTES = ["/", "/login"];
 
   const [user, setUser] = useState<User | null>(null);
   const [status, setStatus] = useState<AuthStatus>("loading");
@@ -60,7 +63,11 @@ export const AuthContextProvider = ({
   useEffect(() => {
     setStatus("loading");
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      currentUser ? setUser(currentUser) : router.push("/login");
+      currentUser
+        ? setUser(currentUser)
+        : PUBLIC_ROUTES.includes(pathname)
+        ? ""
+        : router.push("/login");
       setStatus(currentUser ? "authenticated" : "unauthenticated");
     });
 

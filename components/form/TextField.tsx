@@ -14,7 +14,7 @@ const TextField = ({
   className,
 }: TextFieldProps) => {
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-1 p-[1px]">
       <label htmlFor={label} className="text-xs 2xl:text-sm text-slate-700">
         {label}
       </label>
@@ -23,7 +23,7 @@ const TextField = ({
         id={label}
         placeholder={placeholder}
         disabled={disabled}
-        className={`text-sm 2xl:text-base px-5 py-3 border border-slate-200 rounded-md focus:outline-0 w-full bg-slate-50 placeholder:text-slate-400 text-slate-800 ${className} ${
+        className={`text-sm 2xl:text-base px-5 py-3 border border-slate-200 rounded-md focus:outline-0 w-full bg-slate-50 placeholder:text-slate-400 text-slate-800 hover:bg-slate-100 ${className} ${
           disabled ? "cursor-not-allowed" : ""
         }`}
       />
