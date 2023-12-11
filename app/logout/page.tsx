@@ -13,7 +13,7 @@ export default function Logout() {
     }, 1200);
 
     return () => clearTimeout(timer);
-  }, []);
+  });
 
   return (
     <>

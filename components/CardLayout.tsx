@@ -1,19 +1,3 @@
-// const CardLayout = ({
-//   className = "",
-//   children,
-// }: {
-//   className?: string;
-//   children: React.ReactNode;
-// }) => {
-//   return (
-//     <div
-//       className={`border border-slate-200 rounded-lg bg-white p-4 ${className}`}
-//     >
-//       {children}
-//     </div>
-//   );
-// };
-
 import React from "react";
 
 const CardLayout = React.forwardRef<
@@ -32,5 +16,7 @@ const CardLayout = React.forwardRef<
     </div>
   );
 });
+
+CardLayout.displayName = "CardLayout";
 
 export default CardLayout;
